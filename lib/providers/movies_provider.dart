@@ -76,6 +76,8 @@ class MoviesProvider extends ChangeNotifier {
     return searchResponse.results;
   }
 
+  getPopularMovies() {}
+
   
 
 
