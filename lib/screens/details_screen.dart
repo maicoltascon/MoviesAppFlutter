@@ -42,7 +42,7 @@ class _CustomAppBar extends StatelessWidget {
   final Movie movie;
 
 
-  const _CustomAppBar({super.key,  required this.movie});
+  const _CustomAppBar({required this.movie});
 
   
 
@@ -62,7 +62,7 @@ class _CustomAppBar extends StatelessWidget {
           alignment: Alignment.bottomCenter,
           padding: const EdgeInsets.only(bottom: 10),
           color: Colors.black45,
-          child:  Text(movie.title, style: TextStyle(fontSize: 16), textAlign: TextAlign.center,)
+          child:  Text(movie.title, style: const TextStyle(fontSize: 16), textAlign: TextAlign.center,)
         ),
         background: FadeInImage(
           placeholder: AssetImage('assets/loading.gif'), 

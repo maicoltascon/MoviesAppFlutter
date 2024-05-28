@@ -1,8 +1,11 @@
-import 'dart:convert';
+
+
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:movies/models/models.dart';
+
 
 class MoviesProvider extends ChangeNotifier {
   final String _apiKey =  'df94e35d6a00ea17f1a05531049a9210';
@@ -44,6 +47,9 @@ class MoviesProvider extends ChangeNotifier {
     return creditsResponse.cast;
   }
 
+
+
+
   Future<String> _getJsonData( String endpoint, [int page = 1] ) async {
     final url = Uri.https( _baseUrl, endpoint, {
       'Authorization': 'Bearer $_accessToken',
@@ -55,6 +61,22 @@ class MoviesProvider extends ChangeNotifier {
     final response = await http.get(url);
     return response.body;
   }
+
+    Future<List<Movie>> searchMovies( String query) async {
+
+    final url = Uri.https( _baseUrl, '3/search/movie', {
+      'Authorization': 'Bearer $_accessToken',
+      'api_key': _apiKey,
+      'language': _language,
+      'query': query
+    });
+
+    final response = await http.get(url);
+    final searchResponse = SearchResponse.fromJson(response.body); 
+    return searchResponse.results;
+  }
+
+  
 
 
 }
